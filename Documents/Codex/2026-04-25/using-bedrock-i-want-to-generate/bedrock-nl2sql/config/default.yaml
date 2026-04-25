@@ -1,0 +1,31 @@
+application:
+  name: Bedrock NL2SQL
+  version: 1.0.0
+  description: A natural language to SQL generation platform powered by Amazon Bedrock.
+  environment: development
+  logging:
+    level: info
+    file: logs/app.log
+  database:
+    type: postgres
+    host: localhost
+    port: 5432
+    username: user
+    password: password
+    database: bedrock_db
+  api:
+    base_url: /api/v1
+    timeout: 5000
+  security:
+    enable_auth: true
+    jwt_secret: your_jwt_secret
+    token_expiry: 3600
+  features:
+    enable_logging: true
+    enable_audit: true
+    enable_feedback: true
+  metadata:
+    path: src/semantic/metadata
+  allowed_origins:
+    - http://localhost:3000
+    - https://your-production-url.com

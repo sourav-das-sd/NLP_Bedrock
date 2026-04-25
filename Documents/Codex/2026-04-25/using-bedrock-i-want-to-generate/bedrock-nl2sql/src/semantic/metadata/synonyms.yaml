@@ -1,0 +1,29 @@
+synonyms:
+  active_policy: 
+    - "current_policy"
+    - "ongoing_policy"
+    - "live_policy"
+  total_premium: 
+    - "overall_premium"
+    - "aggregate_premium"
+    - "sum_premium"
+  auto_policy: 
+    - "automobile_policy"
+    - "car_policy"
+    - "vehicle_policy"
+  claims: 
+    - "insurance_claims"
+    - "policy_claims"
+    - "filed_claims"
+  billing: 
+    - "invoicing"
+    - "payment_processing"
+    - "charges"
+  customer: 
+    - "client"
+    - "consumer"
+    - "user"
+  operations: 
+    - "business_operations"
+    - "company_operations"
+    - "enterprise_operations"

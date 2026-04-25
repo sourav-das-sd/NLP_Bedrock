@@ -1,0 +1,43 @@
+# Integration Tests for Bedrock NL2SQL
+
+import { describe, it, expect } from 'jest';
+import { BedrockClient } from '../../src/services/bedrockClient';
+import { SQLGenerator } from '../../src/services/sqlGenerator';
+import { Validator } from '../../src/services/validator';
+import { Executor } from '../../src/services/executor';
+
+describe('Integration Tests for NL2SQL', () => {
+    let bedrockClient;
+    let sqlGenerator;
+    let validator;
+    let executor;
+
+    beforeAll(() => {
+        bedrockClient = new BedrockClient();
+        sqlGenerator = new SQLGenerator();
+        validator = new Validator();
+        executor = new Executor();
+    });
+
+    it('should generate valid SQL for a given natural language query', async () => {
+        const userQuery = 'Show total premium by state for active auto policies in the last 12 months';
+        const prompt = await bedrockClient.generatePrompt(userQuery);
+        const sql = sqlGenerator.generateSQL(prompt);
+        const isValid = validator.validate(sql);
+        
+        expect(isValid).toBe(true);
+    });
+
+    it('should execute the generated SQL and return results', async () => {
+        const userQuery = 'Show total premium by state for active auto policies in the last 12 months';
+        const prompt = await bedrockClient.generatePrompt(userQuery);
+        const sql = sqlGenerator.generateSQL(prompt);
+        const isValid = validator.validate(sql);
+        
+        if (isValid) {
+            const results = await executor.execute(sql);
+            expect(results).toBeDefined();
+            expect(results.length).toBeGreaterThan(0);
+        }
+    });
+});
