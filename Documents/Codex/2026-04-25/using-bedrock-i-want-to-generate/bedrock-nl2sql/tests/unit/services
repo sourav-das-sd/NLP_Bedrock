@@ -1,0 +1,39 @@
+# File: /bedrock-nl2sql/bedrock-nl2sql/tests/unit/services/testPromptBuilder.ts
+
+import { PromptBuilder } from '../../../src/services/promptBuilder';
+
+describe('PromptBuilder', () => {
+    let promptBuilder: PromptBuilder;
+
+    beforeEach(() => {
+        promptBuilder = new PromptBuilder();
+    });
+
+    test('should construct a prompt for a simple query', () => {
+        const userInput = 'Show total premium for active policies';
+        const expectedPrompt = 'Generate SQL to show total premium for active policies';
+        
+        const result = promptBuilder.buildPrompt(userInput);
+        
+        expect(result).toEqual(expectedPrompt);
+    });
+
+    test('should include context in the prompt', () => {
+        const userInput = 'Show total premium for active policies in Texas';
+        const context = { state: 'Texas' };
+        const expectedPrompt = 'Generate SQL to show total premium for active policies in Texas';
+        
+        const result = promptBuilder.buildPrompt(userInput, context);
+        
+        expect(result).toEqual(expectedPrompt);
+    });
+
+    test('should handle empty input gracefully', () => {
+        const userInput = '';
+        const expectedPrompt = 'No valid input provided';
+        
+        const result = promptBuilder.buildPrompt(userInput);
+        
+        expect(result).toEqual(expectedPrompt);
+    });
+});

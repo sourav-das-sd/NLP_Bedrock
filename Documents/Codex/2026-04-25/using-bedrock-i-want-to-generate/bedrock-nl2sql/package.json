@@ -1,0 +1,31 @@
+{
+  "name": "bedrock-nl2sql",
+  "version": "1.0.0",
+  "description": "A natural language to SQL generation platform powered by Amazon Bedrock.",
+  "main": "src/api/server.ts",
+  "scripts": {
+    "start": "ts-node src/api/server.ts",
+    "build": "tsc",
+    "test": "jest",
+    "deploy": "bash scripts/deploy.sh"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "aws-sdk": "^2.1030.0",
+    "yaml": "^1.10.2",
+    "pg": "^8.7.1",
+    "snowflake-sdk": "^1.9.0",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4",
+    "ts-node": "^10.4.0",
+    "jest": "^27.0.6",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.7"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "license": "MIT"
+}

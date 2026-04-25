@@ -1,0 +1,30 @@
+tables:
+  - name: policies
+    columns:
+      - name: id
+        type: integer
+        description: Unique identifier for the policy
+      - name: policy_number
+        type: string
+        description: The policy number assigned to the policy
+      - name: status
+        type: string
+        description: Current status of the policy (e.g., active, inactive)
+      - name: premium_amount
+        type: decimal
+        description: Total premium amount for the policy
+      - name: start_date
+        type: date
+        description: Start date of the policy
+      - name: end_date
+        type: date
+        description: End date of the policy
+      - name: customer_id
+        type: integer
+        description: Identifier for the customer associated with the policy
+
+relationships:
+  - from: policies.customer_id
+    to: customers.id
+    type: one-to-many
+    description: Each policy is associated with one customer, but a customer can have multiple policies.
